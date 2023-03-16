@@ -1,0 +1,37 @@
+version: '3.4'
+
+services:
+  project:
+    image: phaswich/clicknext
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3030:3030
+    depends_on:
+      - mongo
+    networks:
+      - mern-app
+    volumes:
+      - .:/usr/src/app
+    links:
+      - mongo
+    
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27018:27017
+    networks:
+      - mern-app
+    volumes:
+      - data:/data/db
+    
+networks:
+  mern-app:
+    driver: bridge
+volumes:
+  data:
+    driver: local
+  mongo-db:

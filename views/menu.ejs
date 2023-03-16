@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>menupage</title>
+    <link rel="shortcut icon" type="image/png" href="iconbank.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #0077cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #0077cc;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #005ea2;
+        }
+
+        #depositbtn {
+            background-color: #008000;
+        }
+
+        #withdrawbtn {
+            background-color: #ff0000;
+        }
+
+        #transferbtn {
+            background-color: #ffa500;
+        }
+
+        #historybtn {
+            background-color: #0077cc;
+        }
+
+        #logoutbtn {
+            background-color: #7613af;
+        }
+
+        #Clicknext {
+            color: #EE404D;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1><a id="Clicknext">Clicknext</a> X Bank</h1>
+    <h1>Hi.. <a id="Title"></a> <a id="message"></a></h1>
+    <h1>Bank Account number is : <a id="bankacc"></a></h1>
+    <h1>Your Balance is : <a id="balance"></a> bath</h1>
+
+    <button id="depositbtn">deposit</button>
+    <button id="withdrawbtn">withdraw</button>
+    <button id="transferbtn">transfer</button>
+    <button id="historybtn">history</button><br><br>
+    <button id="logoutbtn">Logout</button>
+</body>
+<script>
+    window.onload = async () => {
+        let response = fetch('/menu', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.status == 404){
+                    alert(data.message);
+                    window.location = '/'
+                }
+                const infomation = data.datadb;
+                const balance = data.nowbl;
+                const bankacc = data.bankacc;
+                document.querySelector('#message').textContent = infomation.Firstname;
+                document.querySelector('#Title').textContent = infomation.Title;
+                document.querySelector('#bankacc').textContent = bankacc;
+                document.querySelector('#balance').textContent = balance;
+            })
+    }
+    document.getElementById("depositbtn").onclick = function () {
+        location.href = "http://localhost:3030/deposit";
+    };
+    document.getElementById("withdrawbtn").onclick = function () {
+        location.href = "http://localhost:3030/withdraw";
+    };
+    document.getElementById("transferbtn").onclick = function () {
+        location.href = "http://localhost:3030/transfer";
+    };
+    document.getElementById("historybtn").onclick = function () {
+        location.href = "http://localhost:3030/history";
+    };
+    document.getElementById("logoutbtn").onclick = function () {
+        location.href = "http://localhost:3030/";
+    };
+</script>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" type="image/png" href="iconbank.png">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        text-align: center;
+    }
+
+    h1 {
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 1em;
+    }
+
+    table {
+        border-collapse: collapse;
+        margin: 0 auto;
+    }
+
+    thead {
+        background-color: #f5f5f5;
+    }
+
+    th {
+        padding: 10px;
+        text-align: center;
+    }
+
+    td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+    #message {
+        color: blue;
+    }
+
+    #infoTableBody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #infoTableBody tr:hover {
+        background-color: #ddd;
+    }
+
+    button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        background-color: #ffa500;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #ca8402;
+    }
+
+    #backbtn {
+        background-color: #7613af;
+    }
+
+    #receive {
+        color: #4CAF50;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    #transfer {
+        color: #EE404D;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    #Clicknext {
+        color: #EE404D;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 28px;
+    }
+</style>
+
+<body><br>
+    <h1><a id="Clicknext">Clicknext</a> X Bank</h1>
+    <h1>Historypage</h1>
+    <h2>Action: <a id="receive">Receive</a></h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Datetime</th>
+                <th>User</th>
+                <th>Remain</th>
+                <th>Action</th>
+                <th>From</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody id="receiveTableBody"></tbody>
+    </table>
+
+    <br>
+    <h2>Action: <a id="transfer">Transfer</a></h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Datetime</th>
+                <th>User</th>
+                <th>Remain</th>
+                <th>Action</th>
+                <th>From</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody id="transferTableBody"></tbody>
+    </table>
+    <br><br>
+    <button id="backbtn" onclick="history.back()">Go back</button>
+</body>
+<script>
+    window.onload = async () => {
+        let response = fetch('/history', {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("access_token")
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status == 404) {
+                    alert(data.message);
+                    window.location = '/'
+                }
+                const infomation = data.Obj;
+                infomation.forEach(info => {
+                    delete info._id;
+                    delete info.__v;
+                });
+                const receiveTableBody = document.getElementById('receiveTableBody');
+                const transferTableBody = document.getElementById('transferTableBody');
+                infomation.forEach(info => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td>${info.Datetime}</td>
+                                    <td>${info.User}</td>
+                                    <td>${info.Remain}</td>
+                                    <td>${info.Action}</td>
+                                    <td>${info.From}</td>
+                                    <td>${info.Amount}</td>`;
+                    if (info.Action === 'Receive') {
+                        receiveTableBody.appendChild(row);
+                    } else if (info.Action === 'Transfer') {
+                        transferTableBody.appendChild(row);
+                    }
+                });
+
+            });
+    };
+
+</script>
+
+</html>
