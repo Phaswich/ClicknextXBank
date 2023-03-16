@@ -32,4 +32,12 @@ Function<br> - Deposit (Complete) :ok_hand:<br>
 You should change uri value in app.js in line 20 to const uri = 'mongodb://mongo:27017/BankClicknext';<br>
 You should change uri value in setupDB.js in line 5 to const uri = 'mongodb://mongo:27017/';<br>***
 
+***<br>
+if you have Error like this : "connect ECONNREFUSED 127.0.0.1:27017" when you use "npm start"<br>
+This way to fixit. <br>
+- Go serch on your window<br>
+- Search "Services"<br>
+- Find MongoDB Server (MongoDB)<br>
+- Then start it and try again.<br>***
+
 
