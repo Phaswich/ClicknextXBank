@@ -30,6 +30,6 @@ Function<br> - Deposit (Complete) :ok_hand:<br>
          
 *** If want to use Docker compose. <br>
 You should change uri value in app.js in line 20 to const uri = 'mongodb://mongo:27017/BankClicknext';<br>
-You should change uri value in setupDB.js in line 5 to const uri = 'mongodb://mongo:27017/';<br>
-***
+You should change uri value in setupDB.js in line 5 to const uri = 'mongodb://mongo:27017/';<br>***
+
 
