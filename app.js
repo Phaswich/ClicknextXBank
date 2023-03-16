@@ -183,7 +183,6 @@ app.post("/transfer", async function (req, res) {
     // console.log(req.body.quantity); //deposit val
     let jwtStatus = TokenManager.checkAuthentication(req);
     let check = 0;
-    let nowbl;
     let nameuser = " ";
     let nameother = " ";
     let posother;
