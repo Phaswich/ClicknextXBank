@@ -17,8 +17,8 @@ app.set('views', './views');
 app.set("view engine", "ejs");
 
 
-//const uri = 'mongodb://localhost:27017/BankClicknext';
-const uri = 'mongodb://mongo:27017/BankClicknext';
+const uri = 'mongodb://localhost:27017/BankClicknext';
+//const uri = 'mongodb://mongo:27017/BankClicknext';
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
