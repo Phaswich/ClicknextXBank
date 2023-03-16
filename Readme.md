@@ -1,10 +1,12 @@
-How to Run?<br>
+How to Run?
+```
     - Download and install MongoDB Community Server<br>
     - Connect to Database (URI : mongodb://localhost:27017/)<br>
     - $ git clone https://github.com/Phaswich/ClicknextXBank.git<br>
     - $ cd ClicknextXBank<br>
     - $ npm install<br>
     - $ npm start<br>
+ ```
    <br>
    Go => http://localhost:3030/<br>
 <br>
