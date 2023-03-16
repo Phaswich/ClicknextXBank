@@ -6,7 +6,7 @@ How to Run?
     - $ npm install
     - $ npm start
    
-   Go => ttp://localhost:3030/
+   Go => http://localhost:3030/
 
 For Login
 =============================================
