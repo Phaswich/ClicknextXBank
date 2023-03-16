@@ -21,7 +21,7 @@ For Login<br>
    Bank Account number : 0002
 =============================================
 
-Function - Deposit (Complete)<br>
-         - Withdraw (Complete)<br>
-         - Transfer (Complete)<br>
-         - History (Complete)<br>
+Function - Deposit (Complete)[x]
+         - Withdraw (Complete)[x]
+         - Transfer (Complete)[x]
+         - History (Complete)[x]
