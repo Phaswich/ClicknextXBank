@@ -10,12 +10,7 @@ How to Run?
    <br>
    Go => http://localhost:3030/<br>
 <br>
-Some basic Git commands are:
-```
-git status
-git add
-git commit
-```
+
 For Login<br>
 <br>
      =============================================<br>
